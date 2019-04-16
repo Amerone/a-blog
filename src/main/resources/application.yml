@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/amarone?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      initial-size: 10
+      min-idle: 5
+      max-wait: 3
+      max-active: 20
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  thymeleaf:
+    cache: false
+
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 47.106.38.101:26379,47.106.38.101:26380
+    database: 15
