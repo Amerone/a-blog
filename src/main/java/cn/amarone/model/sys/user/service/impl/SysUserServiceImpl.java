@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import cn.amarone.model.common.exception.BizException;
-import cn.amarone.model.sys.article.entity.Article;
+import cn.amarone.model.sys.common.exception.BizException;
+import cn.amarone.model.article.entity.Article;
 import cn.amarone.model.sys.user.dao.ISysUserDao;
 import cn.amarone.model.sys.user.entity.SysUser;
 import cn.amarone.model.sys.user.service.ISysUserService;
@@ -58,6 +58,15 @@ public class SysUserServiceImpl implements ISysUserService {
 
 
         return userInfo;
+    }
+
+    @Override
+    public void getAccInfo(Article articleInfo) throws BizException {
+        SysUser userInfo = sysUserDao.queryById(articleInfo.getUserId());
+        if (userInfo != null) {
+            articleInfo.setUserName(userInfo.getUsername());
+            articleInfo.setAvatar(userInfo.getAvatar());
+        }
     }
 
     @Override

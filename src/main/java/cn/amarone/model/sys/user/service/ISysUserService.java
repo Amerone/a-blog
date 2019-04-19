@@ -2,8 +2,8 @@ package cn.amarone.model.sys.user.service;
 
 import org.springframework.data.domain.Page;
 
-import cn.amarone.model.common.exception.BizException;
-import cn.amarone.model.sys.article.entity.Article;
+import cn.amarone.model.sys.common.exception.BizException;
+import cn.amarone.model.article.entity.Article;
 import cn.amarone.model.sys.user.entity.SysUser;
 
 /**
@@ -31,6 +31,7 @@ public interface ISysUserService {
      */
     SysUser getAccInfo(Long userId) throws BizException;
 
+    void getAccInfo(Article articleInfo) throws BizException;
 
     void getAccInfo(Page<Article> pageInfo) throws BizException;
 }

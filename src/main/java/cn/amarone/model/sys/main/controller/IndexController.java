@@ -20,9 +20,10 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.amarone.model.common.BaseController;
-import cn.amarone.model.common.BizConst.CommonConst;
-import cn.amarone.model.sys.article.entity.Article;
+import cn.amarone.model.article.controller.ArticlesController;
+import cn.amarone.model.article.entity.Article;
+import cn.amarone.model.sys.common.BaseController;
+import cn.amarone.model.sys.common.BizConst.CommonConst;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -49,9 +50,10 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String getArticles() throws Exception {
+        // 热门文章
         Page<Article> pageInfo = articlesController.getTopArticles(0);
         req.setAttribute("topArticles", pageInfo);
-
+        // 综合文章
         Page<Article> synthesizeArticles = articlesController.getSynthesizeArticles(0);
         req.setAttribute("synthesizeArticles", synthesizeArticles);
         return "index";

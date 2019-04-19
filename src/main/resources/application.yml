@@ -13,9 +13,12 @@ spring:
       max-wait: 3
       max-active: 20
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
+  jackson:
+    time-zone: GMT+8
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
 
   thymeleaf:
     cache: false

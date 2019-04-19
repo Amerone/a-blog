@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:include="common/static :: style">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,6 +8,7 @@
 <body>
     <div th:include="common/templates :: header"></div>
     <div th:include="common/templates :: header-nav"></div>
+    </div>
 
     <div class="layui-container">
         <div class="layui-row layui-col-space15">
@@ -14,13 +16,15 @@
                 <div class="fly-panel detail-box">
                     <h1 th:text="${article.title}"></h1>
                     <div class="fly-detail-info">
+
                     </div>
                     <div class="detail-about">
                         <a class="fly-avatar" th:href="@{'/u/' + ${article.userId}}">
-                            <img th:src="${article.avatar}" th:alt="${article.username}">
+                            <img th:src="${article.avatar}" th:alt="${article.userName}">
                         </a>
+                        <span th:text="${article.userName}"></span>
                         <div class="detail-body">
-
+                            [[${article.content}]]
                         </div>
                     </div>
                 </div>
@@ -30,11 +34,4 @@
 
     <div th:include="common/templates :: footer"></div>
 </body>
-<script type="application/javascript">
-    $('.detail-body').each(function(){
-        var othis = $(this),
-            html = othis.html();
-            othis.html([[${article.content}]]);
-    });
-</script>
 </html>

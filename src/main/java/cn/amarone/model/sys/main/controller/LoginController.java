@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.amarone.model.common.BizConst.CommonConst;
-import cn.amarone.model.common.response.CommRsp;
+import cn.amarone.model.sys.common.BizConst.CommonConst;
+import cn.amarone.model.sys.common.response.CommRsp;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 
