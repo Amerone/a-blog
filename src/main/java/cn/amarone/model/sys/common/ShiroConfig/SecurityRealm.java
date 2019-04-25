@@ -15,8 +15,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import cn.amarone.model.sys.user.entity.SysUser;
-import cn.amarone.model.sys.user.service.ISysUserService;
+import cn.amarone.model.user.entity.SysUser;
+import cn.amarone.model.user.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -58,5 +58,13 @@ public class SecurityRealm extends AuthorizingRealm {
         
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(profile, token.getCredentials(), getName());
         return info;
+    }
+
+    /**
+     * 清理缓存权限
+     */
+    public void clearCachedAuthorizationInfo()
+    {
+        this.clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());
     }
 }

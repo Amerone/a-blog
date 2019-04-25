@@ -43,22 +43,21 @@ public class ShiroConfig {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         filterFactoryBean.setSecurityManager(securityManager);
         // 配置登录的url和登录成功的url
-        filterFactoryBean.setLoginUrl("/goLogin");
+        filterFactoryBean.setLoginUrl("/login");
         filterFactoryBean.setSuccessUrl("/index");
         // 配置未授权跳转页面
-        filterFactoryBean.setUnauthorizedUrl("/error/404");
+        filterFactoryBean.setUnauthorizedUrl("error/404");
 
         Map<String, String> hashMap = new LinkedHashMap<>();
-        hashMap.put("/goLogin", "anon");
-        hashMap.put("/capthca.jpg", "anon");
+        hashMap.put("/login", "anon");
         hashMap.put("/user*", "user");
         hashMap.put("/user/**", "user");
-        hashMap.put("/post/**", "user");
         filterFactoryBean.setFilterChainDefinitionMap(hashMap);
 
         return filterFactoryBean;
     }
 
+    //用于thymeleaf模板使用shiro标签
     @Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();

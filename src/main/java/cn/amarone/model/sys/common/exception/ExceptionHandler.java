@@ -26,7 +26,7 @@ public class ExceptionHandler {
         ModelAndView mav = new ModelAndView();
         mav.addObject("result", CommRsp.error());
         mav.addObject("url", req.getRequestURL());
-        mav.setViewName("error/500");
+        mav.setViewName("error/notice");
         return mav;
     }
 

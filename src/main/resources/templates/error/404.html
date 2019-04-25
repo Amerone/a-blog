@@ -3,10 +3,19 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:include="common/static :: style">
     <meta charset="utf-8">
-    <title>404 - Fly社区</title>
+    <title>404</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
-     -------------   404 --------
+    <div th:include="common/templates :: header"></div>
+    <div th:include="common/templates :: header-nav"></div>
+
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            404 not find something
+        </div>
+    </div>
+
+    <div th:include="common/templates :: footer"></div>
 </body>
 </html>

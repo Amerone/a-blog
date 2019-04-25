@@ -22,9 +22,9 @@
                 <div class="fly-panel-title fly-filter">
                     <a>置顶</a>
                 </div>
-                <ul class="fly-list scroll" id="blogArticle">
+                <ul class="fly-list scroll" id="typeArticle">
 
-                    <li th:each="data:${topArticles.content}" class="scroll">
+                    <li th:each="data:${articles.content}" class="scroll">
 
                         <a th:href="'/user/'+${data.userId}" class="fly-avatar">
                             <img th:src="${data.avatar}" th:alt="${data.userName}">
@@ -82,17 +82,18 @@
 <div th:include="common/templates :: footer"></div>
 
 <script type="application/javascript">
+    var articleType = [[{$typeInfo.id}]];
     layui.use('flow', function () {
         var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
         var flow = layui.flow;
         flow.load({
-                      elem: '#topArticle' //指定列表容器
+                      elem: '#typeArticle' //指定列表容器
                       ,isAuto: false
                       ,isLazyimg: true
                       , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
                 var lis = [];
                 //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                $.get('/article/top?page=' + page, function (res) {
+                $.get('/articleType/'+articleType+'/' + page, function (res) {
                     //假设你的列表返回在data集合中
                     layui.each(res.content, function (index, item) {
                         lis.push(
@@ -114,32 +115,6 @@
                 });
             }
         });
-
-
-
-        flow.load({
-                      elem: '#blogArticle' //指定列表容器
-                      ,isAuto: true
-                      , isLazyimg: true
-                      , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
-                var lis = [];
-                //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                $.get('/article/hot?page=' + page, function (res) {
-                    //假设你的列表返回在data集合中
-                    layui.each(res.content, function (index, item) {
-                        lis.push(
-                            '<dd class="scroll">' +
-                            '<a href="jie/detail.html">'+item.title+'</a>'+
-                            '<span><i class="iconfont icon-pinglun1"></i> '+item.viewCount+'</span>');
-                    });
-
-                    //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                    //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                    next(lis.join(''), page < res.totalPages);
-                });
-            }
-        });
-
     });
 </script>
 

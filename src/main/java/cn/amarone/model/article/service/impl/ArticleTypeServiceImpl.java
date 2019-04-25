@@ -33,7 +33,6 @@ public class ArticleTypeServiceImpl implements IArticleTypeService {
 
     @Override
     public ArticleType queryById(Long id) {
-        // TODO
-        return null;
+        return articleTypeDao.queryById(id);
     }
 }

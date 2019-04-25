@@ -11,12 +11,13 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.amarone.model.sys.common.BizConst.CommonConst;
 import cn.amarone.model.sys.common.response.CommRsp;
+import cn.amarone.model.sys.common.util.ShiroUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 
@@ -31,7 +32,7 @@ import cn.hutool.crypto.SecureUtil;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/goLogin")
+    @GetMapping("/login")
     public String goLogin() {
         return "login";
     }
@@ -75,4 +76,12 @@ public class LoginController {
 
         return CommRsp.success("登录成功");
     }
+
+    @GetMapping("/logout")
+    public String logOut() {
+        ShiroUtil.clearCachedAuthorizationInfo();
+        return "index";
+    }
+
+
 }

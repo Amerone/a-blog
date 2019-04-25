@@ -1,8 +1,8 @@
-package cn.amarone.model.sys.user.dao;
+package cn.amarone.model.user.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import cn.amarone.model.sys.user.entity.SysUser;
+import cn.amarone.model.user.entity.SysUser;
 
 /**
  * @Description:

@@ -5,8 +5,6 @@ package cn.amarone.model.article.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
 import cn.amarone.model.article.entity.ArticleType;
 
 /**
@@ -18,4 +16,6 @@ import cn.amarone.model.article.entity.ArticleType;
  * @Version:
  */
 public interface IArticleTypeDao extends JpaRepository<ArticleType, Long> {
+
+    ArticleType  queryById(Long id);
 }

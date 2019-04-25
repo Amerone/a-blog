@@ -45,19 +45,19 @@ public class Article implements Serializable {
      * 支持人数
      */
     @Column(name = "voteUp", length = 6, nullable = true)
-    private long voteUp;
+    private Long voteUp;
 
     /**
      * 反对人数
      */
     @Column(name = "voteDown", length = 6, nullable = true)
-    private long voteDown;
+    private Long voteDown;
 
     /**
      * 访问量
      */
     @Column(name = "viewCount", length = 6, nullable = true)
-    private long viewCount;
+    private Long viewCount;
 
     /**
      * 置顶等级（默认为0，等级越高越置顶

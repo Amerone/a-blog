@@ -12,7 +12,6 @@ $.validator.setDefaults({
                         });
 
 function login() {
-    layer.load(0, {shade: false});
     $.modal.loading();
     layui.use('form', function () {
         var form = layui.form;
@@ -20,10 +19,10 @@ function login() {
         form.on('submit(*)', function (data) {
             $.post('/login', data.field, function (res) {
                 if (res.code == 200) {
-                    location.href = "/user/center";
+                    $.get("/user/index");
                 } else {
                     $("#capthca").click();
-                    layer.msg(res.msg);
+                    $.modal.alertError(res.msg)
                 }
                 $.modal.closeLoading();
             });

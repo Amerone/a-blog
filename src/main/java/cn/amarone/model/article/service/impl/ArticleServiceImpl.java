@@ -4,7 +4,6 @@
 package cn.amarone.model.article.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -58,9 +57,16 @@ public class ArticleServiceImpl implements IArticleService {
 
     @Override
     public Page<Article> queryByType(Pageable pageable, Long typeId) throws Exception {
-        Article para = new Article();
-        para.setTypeId(typeId);
-        para.setStatus(ArticleConst.IS_DRAFT_FALSE);
-        return articleDao.findAll(Example.of(para), pageable);
+        Specification queryPara = new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> list = new ArrayList<Predicate>();
+                list.add(criteriaBuilder.equal(root.get("status").as(String.class), ArticleConst.IS_DRAFT_FALSE));
+                list.add(criteriaBuilder.equal(root.get("typeId").as(String.class), typeId));
+                Predicate[] p = new Predicate[list.size()];
+                return criteriaBuilder.and(list.toArray(p));
+            }
+        };
+        return articleDao.findAll(queryPara, pageable);
     }
 }

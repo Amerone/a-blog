@@ -20,7 +20,7 @@ import java.util.List;
 import cn.amarone.model.article.entity.Article;
 import cn.amarone.model.sys.common.BaseController;
 import cn.amarone.model.sys.common.exception.BizException;
-import cn.amarone.model.sys.user.service.ISysUserService;
+import cn.amarone.model.user.service.ISysUserService;
 import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package cn.amarone.model.sys.user.service.impl;
+package cn.amarone.model.user.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,9 +8,9 @@ import java.util.List;
 
 import cn.amarone.model.sys.common.exception.BizException;
 import cn.amarone.model.article.entity.Article;
-import cn.amarone.model.sys.user.dao.ISysUserDao;
-import cn.amarone.model.sys.user.entity.SysUser;
-import cn.amarone.model.sys.user.service.ISysUserService;
+import cn.amarone.model.user.dao.ISysUserDao;
+import cn.amarone.model.user.entity.SysUser;
+import cn.amarone.model.user.service.ISysUserService;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 
@@ -72,12 +72,14 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public void getAccInfo(Page<Article> pageInfo) throws BizException {
         List<Article> content = pageInfo.getContent();
-        content.forEach(arts -> {
-            SysUser userInfo = sysUserDao.queryById(arts.getUserId());
-            if (userInfo != null) {
-                arts.setUserName(userInfo.getUsername());
-                arts.setAvatar(userInfo.getAvatar());
-            }
-        });
+        if(content!=null && content.size() > 0){
+            content.forEach(arts -> {
+                SysUser userInfo = sysUserDao.queryById(arts.getUserId());
+                if (userInfo != null) {
+                    arts.setUserName(userInfo.getUsername());
+                    arts.setAvatar(userInfo.getAvatar());
+                }
+            });
+        }
     }
 }

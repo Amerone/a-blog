@@ -1,4 +1,4 @@
-package cn.amarone.model.sys.user.entity;
+package cn.amarone.model.user.entity;
 
 import java.io.Serializable;
 

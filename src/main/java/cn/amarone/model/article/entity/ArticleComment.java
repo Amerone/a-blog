@@ -48,13 +48,13 @@ public class ArticleComment implements Serializable {
      * 支持人数
      */
     @Column(name = "voteUp", length = 6, nullable = true)
-    private long voteUp;
+    private Long voteUp;
 
     /**
      * 反对人数
      */
     @Column(name = "voteDown", length = 6, nullable = true)
-    private long voteDown;
+    private Long voteDown;
 
 
     /**

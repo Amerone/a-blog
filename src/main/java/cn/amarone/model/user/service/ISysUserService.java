@@ -1,10 +1,10 @@
-package cn.amarone.model.sys.user.service;
+package cn.amarone.model.user.service;
 
 import org.springframework.data.domain.Page;
 
 import cn.amarone.model.sys.common.exception.BizException;
 import cn.amarone.model.article.entity.Article;
-import cn.amarone.model.sys.user.entity.SysUser;
+import cn.amarone.model.user.entity.SysUser;
 
 /**
  * @Description:
