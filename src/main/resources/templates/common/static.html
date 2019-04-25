@@ -29,7 +29,22 @@
 
     <script th:inline="javascript"> var ctx = [[@{/}]]; </script>
 
-
+    <script th:inline="javascript" th:if="${session.profile != null}">
+        layui.cache.page = '';
+        layui.cache.user = {
+            username: [[${session.profile.username}]]
+            ,uid: [[${session.profile.id}]]
+            ,avatar: [[${session.profile.avatar}]]
+            ,experience: 0
+            ,sex: [[${session.profile.gender}]]
+        };
+        layui.config({
+                         version: "3.0.0",
+                         base: '/lib/layui-fly/mods/' //这里实际使用时，建议改成绝对路径
+                     }).extend({
+                                   fly: 'index'
+                               }).use('fly');
+    </script>
 
 </head>
 <body>
